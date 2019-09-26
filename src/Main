@@ -15,7 +15,7 @@ import java.util.regex.Pattern;
 import PJ.interfram;                                              
 
 public class Main {
-  int[] command1=new int[6];                      //用一个标记数组标记用户在命令行下选了哪些功能
+        int[] command1=new int[6];                      //用一个标记数组标记用户在命令行下选了哪些功能
 	                                                //数组下标从大到小对应数值标记计算字符数，词数，行数，空行，注释行，代码行一共6个功能
 	Pattern p1=Pattern.compile("-x");
 	static Pattern p2=Pattern.compile("-s");
@@ -26,9 +26,9 @@ public class Main {
 	Pattern p7=Pattern.compile("\\*.");
 	
 	String instru=null;                             //用于存储用户命令中的功能部分           
-  String flph=null;                               //用于存储用户命令中的路径部分
+        String flph=null;                               //用于存储用户命令中的路径部分
 	String ssflph=null;                             //用于存储目录路径
-  String sssflph=null;                            //用于存储目录中指定文件的后缀
+        String sssflph=null;                            //用于存储目录中指定文件的后缀
     
 	Option option=new Option();                     
 	static interfram inter=new interfram();         
@@ -59,7 +59,7 @@ public class Main {
 		}			
 	  }
 	                                               
-	public boolean check(String input) throws IOException{                       //用于检查命令行输入格式是否正确，并且对命令加以处理
+	public boolean check(String input) throws IOException{                             //用于检查命令行输入格式是否正确，并且对命令加以处理
 
 		flph=null;                                                                 //初始化变量
 		ssflph=null;                                                               
@@ -86,12 +86,12 @@ public class Main {
 			System.out.println("命令输入错误");
 			return false;
 		}
-		if(p2.matcher(instru).find()){                                              //命令中有-s，说明处理的对象是目录
+		if(p2.matcher(instru).find()){                                                    //命令中有-s，说明处理的对象是目录
 			
 			if(p7.matcher(flph).find()){                                              //-s的情况下有*.，表明有指定具体的文件后缀
 				tag=0;
 				Pattern p8=Pattern.compile("\\*.\\S{1,}");
-				if(p8.matcher(flph).find()){                                            //利用*.分离出目录路径和指定的后缀
+				if(p8.matcher(flph).find()){                                      //利用*.分离出目录路径和指定的后缀
 				String[] sflph=flph.split("\\*.");          
 				ssflph=sflph[0];
 				sssflph=sflph[1];
@@ -106,27 +106,27 @@ public class Main {
 				return false;
 			}
 			if(files.length==0){
-				System.out.println("目录为空");                                         //判断目录为空
+				System.out.println("目录为空");                                   //判断目录为空
 				return false;
 			}
-		  }else if(flph!=null){                                                    //没有*.的情况，说明没有指定具体的后缀
+		  }else if(flph!=null){                                                          //没有*.的情况，说明没有指定具体的后缀
 			  tag=1;
 			  File fll=new File(flph);
 			  if(fll.isFile()){System.out.println("错误！应为文件夹路径！"); return false;}
 			  File flll[]=fll.listFiles();
 			  if(flll==null){ 
-				  System.out.println("目录不存在");                                    //同样判断目录不存在
+				  System.out.println("目录不存在");                              //同样判断目录不存在
 				  return false;
 			  }
 			  if(flll.length==0){
-				  System.out.println("目录为空");                                      //判断目录为空                           
+				  System.out.println("目录为空");                                //判断目录为空                           
 				  return false;
 			  }
-		  }else {System.out.println("文件路径错误");return false;}                  //除了以上两种情况，其他情况表明输入的目录路径错误
+		  }else {System.out.println("文件路径错误");return false;}                       //除了以上两种情况，其他情况表明输入的目录路径错误
 			
 		return true;
 		}
-		else{                                                                      //没有-s，表明处理的对象是单个文件
+		else{                                                                           //没有-s，表明处理的对象是单个文件
 			if(flph==null){System.out.println("文件路径不存在");return false;}
 			File file=new File(flph);
 			if(!file.exists()){
@@ -140,8 +140,8 @@ public class Main {
 		}			
 	}
 	
-	public void deal() throws IOException{                                       //用于对正确命令的分析与实现
-		for(int k=0;k<command1.length;k++){                                        //初始化标记数组
+	public void deal() throws IOException{                                                //用于对正确命令的分析与实现
+		for(int k=0;k<command1.length;k++){                                           //初始化标记数组
 			command1[k]=0;
 		}
 		if(p3.matcher(instru).find()){command1[5]=1;}
@@ -150,13 +150,13 @@ public class Main {
 		if(p6.matcher(instru).find()){command1[2]=1;command1[1]=1;command1[0]=1;}
 		if(p2.matcher(instru).find()){
 			if(tag==0){
-				option.isDirectory(command1, ssflph, sssflph);                        //目录中有指定具体的后缀
+				option.isDirectory(command1, ssflph, sssflph);                //目录中有指定具体的后缀
 			}else if(tag==1){
-				option.isDirectory(command1, flph, "\\S*");                           //无指定后缀
+				option.isDirectory(command1, flph, "\\S*");                   //无指定后缀
 			}
 			
 		}else{
-			option.Command(command1, flph);                                         //单个文件
+			option.Command(command1, flph);                                       //单个文件
 		}
 		
 	}
