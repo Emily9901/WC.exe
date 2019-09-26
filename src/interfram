@@ -17,7 +17,7 @@ import javax.swing.filechooser.FileSystemView;
 import PJ.Option;
 
 public class interfram extends JFrame implements ActionListener{
-  int[] command2=new int[6];
+        int[] command2=new int[6];
 	int[] Enabled=new int[3];
 	Font F1=new Font("黑体",0,16);
 	Font F2=new Font("黑体",0,14);
@@ -72,12 +72,12 @@ public class interfram extends JFrame implements ActionListener{
 		pp1.add(dfp);
 		
 		JPanel pp2=new JPanel();       //界面第二行的设置
-	  Label1.setFont(F1);
-	  jrb1.setFont(F3);
-	  jrb2.setFont(F3);
-	  jrb3.setFont(F3);
-	  jrb9.setFont(F3);
-	  bg.add(jrb1);
+	        Label1.setFont(F1);
+	        jrb1.setFont(F3);
+	        jrb2.setFont(F3);
+	        jrb3.setFont(F3);
+	        jrb9.setFont(F3);
+	        bg.add(jrb1);
 		bg.add(jrb2);
 		bg.add(jrb3);
 		bg.add(jrb9);
@@ -87,13 +87,13 @@ public class interfram extends JFrame implements ActionListener{
 		pp2.add(jrb3);
 		pp2.add(jrb9);
 		
-		JPanel pp3=new JPanel();       //界面第三行的设置
+	        JPanel pp3=new JPanel();       //界面第三行的设置
 		Label2.setFont(F1);
 		jrb4.setFont(F1);
-	  jrb5.setFont(F1);
-	  jrb6.setFont(F1);
-	  jrb7.setFont(F1);
-	  pp3.add(Label2);
+	        jrb5.setFont(F1);
+	        jrb6.setFont(F1);
+	        jrb7.setFont(F1);
+	        pp3.add(Label2);
 		pp3.add(jrb4);
 		pp3.add(jrb5);
 		pp3.add(jrb6);
