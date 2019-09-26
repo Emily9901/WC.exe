@@ -47,8 +47,8 @@ public class interfram extends JFrame implements ActionListener{
 	String fl_ph=null;
 	String suffix1=null;
 	
-	int F=0;                          //标记选的是文件夹
-	int f=0;                          //标记选的是文件
+	int F=0;                                //标记选的是文件夹
+	int f=0;                                //标记选的是文件
 	
 	Option option1=new Option();
 		
@@ -138,7 +138,7 @@ public class interfram extends JFrame implements ActionListener{
 	public void is_Directory(int[] command,String filepath,String suffix)throws IOException{     //用于递归处理文件夹中指定的文件
 		File file=new File(filepath);
 		File[] files=file.listFiles();
-		if(files.length==0){                                                                       //判断所选的文件夹是否为空
+		if(files.length==0){                                                                 //判断所选的文件夹是否为空
 		JOptionPane.showMessageDialog(this, "该文件夹为空！");
 		}
 		else{
@@ -158,7 +158,7 @@ public class interfram extends JFrame implements ActionListener{
 		}
 	}
 	
-	public void Command(int[] command,String filepath) throws IOException{             //处理单个文件，实现对应的功能
+	public void Command(int[] command,String filepath) throws IOException{                       //处理单个文件，实现对应的功能
 		option1.BaseOption(filepath);
 		option1.ExtendOption(filepath);
 		String[] sfp=filepath.split("\\\\");
@@ -184,12 +184,11 @@ public class interfram extends JFrame implements ActionListener{
 		}
 		Result.append("\n");
 	}
-
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		if(e.getSource()==DFP){                                                        //对应选择某个文件夹或文件
+		if(e.getSource()==DFP){                                                  //对应选择某个文件夹或文件
 			JFileChooser jfc=new JFileChooser();
 			FileSystemView fsv=FileSystemView.getFileSystemView();
 			jfc.setCurrentDirectory(fsv.getHomeDirectory());
@@ -204,14 +203,14 @@ public class interfram extends JFrame implements ActionListener{
 					jrb2.setEnabled(true);
 					jrb3.setEnabled(true);
 					jrb9.setEnabled(true);
-					F=1;f=0;                                                           //处理文件夹，标记F=1，f=0
+					F=1;f=0;                                        //处理文件夹，标记F=1，f=0
 				}else if(file.isFile()){
-					jrb1.setEnabled(false);                                            //如果选择处理单个文件，界面中的第二行不能进行选择
+					jrb1.setEnabled(false);                         //如果选择处理单个文件，界面中的第二行不能进行选择
 					jrb2.setEnabled(false);
 					jrb3.setEnabled(false);
 					jrb9.setEnabled(false);
 					Enabled[1]=1;
-					F=0;f=1;                                                           //处理文件，标记f=1，F=0
+					F=0;f=1;                                        //处理文件，标记f=1，F=0
 				}
 				fl_ph=file_path;
 			}
@@ -244,7 +243,7 @@ public class interfram extends JFrame implements ActionListener{
 			}
 		}
 		
-		if(e.getSource()==jrb5){                                                  //Command2数组对要执行的功能进行标记
+		if(e.getSource()==jrb5){                                              //Command2数组对要执行的功能进行标记
 			if(jrb5.isSelected()){
 				command2[4]=1;
 				Enabled[2]=1;
@@ -268,19 +267,19 @@ public class interfram extends JFrame implements ActionListener{
 		}
 		
 		if(e.getSource()==OK){
-			if(Enabled[0]==1&&Enabled[1]==1&&Enabled[2]==1){                         //只有界面中上面的三行都选择完毕后，OK键才有效
+			if(Enabled[0]==1&&Enabled[1]==1&&Enabled[2]==1){                   //只有界面中上面的三行都选择完毕后，OK键才有效
 				Result.setText(null);
 				if(F==1){
 					                                          
 					try {
-						is_Directory(command2,fl_ph,suffix1);                              //处理文件夹
+						is_Directory(command2,fl_ph,suffix1);      //处理文件夹
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 				}else if(f==1){
 					try {
-						Command(command2,fl_ph);                                           //处理单个文件
+						Command(command2,fl_ph);                   //处理单个文件
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
